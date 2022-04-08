@@ -1,0 +1,27 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "[![Actions Status](https://github.com/Ozmeks/backend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/Ozmeks/backend-project-lvl2/actions)",
+  "main": "gendiff.js",
+  "type": "module",
+  "bin": {
+    "gendiff": "gendiff.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ozmeks/backend-project-lvl2.git"
+  },
+  "author": "ozmeks",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ozmeks/backend-project-lvl2/issues"
+  },
+  "homepage": "https://github.com/Ozmeks/backend-project-lvl2#readme",
+  "dependencies": {
+    "commander": "^8.3.0",
+    "lodash": "^4.17.21"
+  }
+}
