@@ -27,11 +27,10 @@ const getArgs = (path1, path2) => {
       return (_.has(obj1, key) ? ` - ${key} : ${value1}` : ` + ${key} : ${value2}`);
     })
     .join('\n');
-  
+
   console.log(`{\n${str}\n}`);
   return `{\n${str}\n}`;
 };
-
 
 const program = new Command();
 program
@@ -40,7 +39,6 @@ program
   .helpOption('-h, --help', 'output usage information')
   .arguments('<filepath1> <filepath2>')
   .action(getArgs);
-
 
 program.description('Compares two configuration files and shows a difference.');
 program.parse(process.argv);
