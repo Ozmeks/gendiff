@@ -1,8 +1,8 @@
 import { test, expect } from '@jest/globals';
-import compareJson from '../src/compare-json.js';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import compareJson from '../src/compare-json.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

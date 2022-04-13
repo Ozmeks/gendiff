@@ -1,5 +1,5 @@
-import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import { readFileSync } from 'fs';
 import _ from 'lodash';
 
 const compareJson = (path1, path2) => {
