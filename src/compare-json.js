@@ -1,5 +1,5 @@
-import getObj from './parser.js';
 import _ from 'lodash';
+import getObj from './parser.js';
 
 const compareJson = (path1, path2) => {
   const obj1 = getObj(path1);
