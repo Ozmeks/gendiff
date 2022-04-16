@@ -1,9 +1,22 @@
 import _ from 'lodash';
+import { resolve, extname } from 'path';
+import { readFileSync } from 'fs';
 import getObj from './parser.js';
 
+const getFile = (path) => {
+  const currentPath = process.cwd();
+  const filepath = resolve(currentPath, path);
+  return readFileSync(filepath);
+};
+
 const compareJson = (path1, path2) => {
-  const obj1 = getObj(path1);
-  const obj2 = getObj(path2);
+  const file1 = getFile(path1);
+  const file2 = getFile(path2);
+  const extFile1 = extname(path1).slice(1).toUpperCase();
+  const extFile2 = extname(path2).slice(1).toUpperCase();
+
+  const obj1 = getObj(file1, extFile1);
+  const obj2 = getObj(file2, extFile2);
   const keys = Object.keys({ ...obj1, ...obj2 });
   const sortedKeys = _.sortBy(keys);
   const str = sortedKeys

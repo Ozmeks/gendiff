@@ -9,4 +9,4 @@
 $ make install
 ```
 #### Example how it works:
-[![asciicast](https://asciinema.org/a/fbHvDDmSsXGo0idt2Yav025mX.svg)](https://asciinema.org/a/fbHvDDmSsXGo0idt2Yav025mX)
+[![asciicast](https://asciinema.org/a/487982.svg)](https://asciinema.org/a/487982)

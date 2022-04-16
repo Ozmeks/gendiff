@@ -1,16 +1,13 @@
-import { resolve, extname } from 'path';
-import { readFileSync } from 'fs';
 import { load } from 'js-yaml';
 
-const getObj = (path) => {
-  const currentPath = process.cwd();
-  const filepath = resolve(currentPath, path);
-  const extName = extname(path).toUpperCase();
-  const file = readFileSync(filepath);
-  if (extName === '.JSON') {
+const getObj = (file, extFile) => {
+  if (extFile === 'JSON') {
     return JSON.parse(file);
   }
-  return load(file);
+  if (extFile === 'YAML' || extFile === 'YML') {
+    return load(file);
+  }
+  return 'Unknown format file';
 };
 
 export default getObj;
