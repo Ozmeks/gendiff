@@ -1,16 +1,9 @@
-import { resolve } from 'path';
-import { readFileSync } from 'fs';
+import getObj from './parser.js';
 import _ from 'lodash';
 
 const compareJson = (path1, path2) => {
-  const currentPath = process.cwd();
-  const filepath1 = resolve(currentPath, path1);
-  const filepath2 = resolve(currentPath, path2);
-
-  const file1 = readFileSync(filepath1);
-  const obj1 = JSON.parse(file1);
-  const file2 = readFileSync(filepath2);
-  const obj2 = JSON.parse(file2);
+  const obj1 = getObj(path1);
+  const obj2 = getObj(path2);
   const keys = Object.keys({ ...obj1, ...obj2 });
   const sortedKeys = _.sortBy(keys);
   const str = sortedKeys
