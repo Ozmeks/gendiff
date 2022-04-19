@@ -19,19 +19,16 @@ const makeMergedObj = (obj1, obj2) => {
 
     if (_.isObject(value1) && _.isObject(value2)) {
       acc[key] = makeMergedObj(value1, value2);
+      return acc;
+    }
+
+    if (value1 === value2) {
+      acc[key] = value1;
     } else {
-      if (hasObj1 && hasObj2) {
-        if (value1 === value2) {
-          acc[key] = value1;
-        } else {
-          acc[`- ${key}`] = value1;
-          acc[`+ ${key}`] = value2;
-        }
-      }
-      if (hasObj1 && !hasObj2) {
+      if (hasObj1) {
         acc[`- ${key}`] = value1;
       }
-      if (!hasObj1 && hasObj2) {
+      if (hasObj2) {
         acc[`+ ${key}`] = value2;
       }
     }
