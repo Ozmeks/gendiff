@@ -1,14 +1,19 @@
 #!/usr/bin/env node
 import { Command } from 'commander/esm.mjs';
 import compareJson from './src/compare-json.js';
+import stylish from './src/stylish.js';
 
 const program = new Command();
 program
-  .option('-V, --version', 'output the version number')
-  .option('-f, --format [type]', 'output format')
+  .description('Compares two configuration files and shows a difference.')
+  .version('0.6')
+  .option('-f, --format [type]', 'output format', 'stylish')
   .helpOption('-h, --help', 'output usage information')
   .arguments('<filepath1> <filepath2>')
-  .action(compareJson);
+  .parse(process.argv);
 
-program.description('Compares two configuration files and shows a difference.');
-program.parse(process.argv);
+const { args } = program;
+const { format } = program.opts();
+if (format === 'stylish') {
+  compareJson(...args, stylish);
+}

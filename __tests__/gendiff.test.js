@@ -15,8 +15,7 @@ test('gendiff JSONs', () => {
   expect(result1).toBe(expectedResult);
 });
 
-const expectedPlain = readFile('expected_plain.txt').toString();
 const result2 = compareJson(getFixturePath('file1.yml'), getFixturePath('file2.yml'));
 test('gendiff flat YAMLs', () => {
-  expect(result2).toBe(expectedPlain);
+  expect(result2).toBe(expectedResult);
 });
