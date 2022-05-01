@@ -1,5 +1,6 @@
 install:
-	npm install
+	npm ci
+	npm link
 lint:
 	npx eslint .
 test:

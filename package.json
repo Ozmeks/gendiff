@@ -2,10 +2,10 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/Ozmeks/backend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/Ozmeks/backend-project-lvl2/actions)",
-  "main": "gendiff.js",
+  "main": "formatters/index.js",
   "type": "module",
   "bin": {
-    "gendiff": "gendiff.js"
+    "gendiff": "bin/gendiff.js"
   },
   "scripts": {
     "test": "npx jest --bail"
