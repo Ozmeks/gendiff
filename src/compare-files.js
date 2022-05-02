@@ -2,7 +2,6 @@ import { resolve, extname } from 'path';
 import { readFileSync } from 'fs';
 import getObj from './parser.js';
 import makeMergedObj from './make-obj.js';
-import stylish from '../formatters/stylish.js';
 
 const getFile = (path) => {
   const currentPath = process.cwd();
@@ -10,7 +9,7 @@ const getFile = (path) => {
   return readFileSync(filepath);
 };
 
-const compareJson = (path1, path2, formatter = stylish) => {
+const compareJson = (path1, path2, formatter) => {
   const file1 = getFile(path1);
   const file2 = getFile(path2);
   const extFile1 = extname(path1).slice(1).toUpperCase();

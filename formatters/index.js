@@ -2,7 +2,7 @@ import compareJson from '../src/compare-files.js';
 import stylish from './stylish.js';
 import plain from './plain.js';
 
-export default (file1, file2, format) => {
+export default (file1, file2, format = 'stylish') => {
   switch (format) {
     case 'plain':
       return compareJson(file1, file2, plain);
