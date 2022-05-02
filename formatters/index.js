@@ -11,6 +11,6 @@ export default (file1, file2, format) => {
     case 'json':
       return compareJson(file1, file2, JSON.stringify);
     default:
-      throw new Error(`Unknown format: '${format}'!`);
+      return `Unknown format: '${format}'!`;
   }
 };
