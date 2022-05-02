@@ -10,27 +10,22 @@ const makeMergedObj = (obj1, obj2) => {
     const value2 = obj2[key];
 
     if (hasObj1 && !hasObj2) {
-      acc[key] = makeObj(value1, 'remove');
-      return acc;
+      return { ...acc, [key]: makeObj(value1, 'remove') };
     }
 
     if (!hasObj1 && hasObj2) {
-      acc[key] = makeObj(value2, 'add');
-      return acc;
+      return { ...acc, [key]: makeObj(value2, 'add') };
     }
 
     if (_.isObject(value1) && _.isObject(value2)) {
-      acc[key] = makeObj(makeMergedObj(value1, value2), 'none');
-      return acc;
+      return { ...acc, [key]: makeObj(makeMergedObj(value1, value2), 'none') };
     }
 
-    if (value1 === value2) {
-      acc[key] = makeObj(value1, 'none');
-    } else {
-      acc[key] = makeObj([value1, value2], 'update');
+    if (value1 !== value2) {
+      return { ...acc, [key]: makeObj([value1, value2], 'update') };
     }
 
-    return acc;
+    return { ...acc, [key]: makeObj(value1, 'none') };
   };
 
   const keys = Object.keys({ ...obj1, ...obj2 });
