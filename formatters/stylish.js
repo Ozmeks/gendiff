@@ -18,24 +18,20 @@ const stylish = (obj) => {
         const { change, value } = objValue;
         switch (change) {
           case 'add':
-            acc.push(`${changeIndent}+ ${property}: ${iter(value, depth + 1)}`);
-            break;
+            return [...acc, `${changeIndent}+ ${property}: ${iter(value, depth + 1)}`];
           case 'remove':
-            acc.push(`${changeIndent}- ${property}: ${iter(value, depth + 1)}`);
-            break;
+            return [...acc, `${changeIndent}- ${property}: ${iter(value, depth + 1)}`];
           case 'update': {
             const [oldValue, newValue] = value;
-            acc.push(`${changeIndent}- ${property}: ${iter(oldValue, depth + 1)}`);
-            acc.push(`${changeIndent}+ ${property}: ${iter(newValue, depth + 1)}`);
-            break;
+            return [...acc,
+              `${changeIndent}- ${property}: ${iter(oldValue, depth + 1)}`,
+              `${changeIndent}+ ${property}: ${iter(newValue, depth + 1)}`];
           }
           case 'none':
-            acc.push(`${notChangedIndent}${property}: ${iter(value, depth + 1)}`);
-            break;
+            return [...acc, `${notChangedIndent}${property}: ${iter(value, depth + 1)}`];
           default:
-            acc.push(`${notChangedIndent}${property}: ${iter(objValue, depth + 1)}`);
+            return [...acc, `${notChangedIndent}${property}: ${iter(objValue, depth + 1)}`];
         }
-        return acc;
       }, []);
 
     return ['{', ...entries, `${closeBracketIndent}}`]
