@@ -5,7 +5,7 @@ import gendiff from '../src/formatters/index.js';
 const program = new Command();
 program
   .description('Compares two configuration files and shows a difference.')
-  .version('0.8')
+  .version('0.9')
   .option('-f, --format [type]', 'output format: stylish, plain, json', 'stylish')
   .helpOption('-h, --help', 'output usage information')
   .arguments('<filepath1> <filepath2>')
