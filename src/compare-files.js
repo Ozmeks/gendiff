@@ -1,26 +1,28 @@
 import { resolve, extname } from 'path';
 import { readFileSync } from 'fs';
 import getObj from './parser.js';
-import makeMergedObj from './make-obj.js';
+import buildTree from './build-tree.js';
 
-const getFile = (path) => {
+const getFileContent = (path) => {
   const currentPath = process.cwd();
   const filepath = resolve(currentPath, path);
   return readFileSync(filepath);
 };
 
-const compareJson = (path1, path2, formatter) => {
-  const file1 = getFile(path1);
-  const file2 = getFile(path2);
-  const extFile1 = extname(path1).slice(1).toUpperCase();
-  const extFile2 = extname(path2).slice(1).toUpperCase();
-  const obj1 = getObj(file1, extFile1);
-  const obj2 = getObj(file2, extFile2);
+const getFileExt = (path) => extname(path).slice(1).toLowerCase();
 
-  const mergedObj = makeMergedObj(obj1, obj2);
+const compareFiles = (path1, path2, formatter) => {
+  const fileContent1 = getFileContent(path1);
+  const fileContent2 = getFileContent(path2);
+  const fileExt1 = getFileExt(path1);
+  const fileExt2 = getFileExt(path2);
+  const obj1 = getObj(fileContent1, fileExt1);
+  const obj2 = getObj(fileContent2, fileExt2);
+
+  const mergedObj = buildTree(obj1, obj2);
   const result = formatter(mergedObj);
 
   return result;
 };
 
-export default compareJson;
+export default compareFiles;

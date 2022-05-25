@@ -1,15 +1,15 @@
-import compareJson from '../src/compare-files.js';
+import compareFiles from '../compare-files.js';
 import stylish from './stylish.js';
 import plain from './plain.js';
 
 export default (file1, file2, format = 'stylish') => {
   switch (format) {
     case 'plain':
-      return compareJson(file1, file2, plain);
+      return compareFiles(file1, file2, plain);
     case 'stylish':
-      return compareJson(file1, file2, stylish);
+      return compareFiles(file1, file2, stylish);
     case 'json':
-      return compareJson(file1, file2, JSON.stringify);
+      return compareFiles(file1, file2, JSON.stringify);
     default:
       throw new Error(`Unknown format: '${format}'!`);
   }

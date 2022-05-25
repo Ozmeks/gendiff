@@ -1,13 +1,14 @@
 import { load } from 'js-yaml';
 
-const getObj = (file, extFile) => {
-  if (extFile === 'JSON') {
-    return JSON.parse(file);
-  }
-  if (extFile === 'YAML' || extFile === 'YML') {
-    return load(file);
-  }
-  return 'Unknown format file';
+const mapping = {
+  yaml: load,
+  yml: load,
+  json: JSON.parse,
 };
 
-export default getObj;
+export default (fileContent, extFile) => {
+  if (Object.hasOwn(mapping, extFile)) {
+    return mapping[extFile](fileContent);
+  }
+  throw new Error(`Unknown format file: '${extFile}'!`);
+};
