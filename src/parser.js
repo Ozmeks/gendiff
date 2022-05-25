@@ -1,4 +1,5 @@
 import { load } from 'js-yaml';
+import _ from 'lodash';
 
 const mapping = {
   yaml: load,
@@ -7,7 +8,7 @@ const mapping = {
 };
 
 export default (fileContent, extFile) => {
-  if (Object.hasOwn(mapping, extFile)) {
+  if (_.has(mapping, extFile)) {
     return mapping[extFile](fileContent);
   }
   throw new Error(`Unknown format file: '${extFile}'!`);
