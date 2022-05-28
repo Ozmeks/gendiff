@@ -1,18 +1,16 @@
-import _ from 'lodash';
 import compareFiles from '../compare-files.js';
-import fStylish from './stylish.js';
-import fPlain from './plain.js';
-
-const mapping = {
-  plain: fPlain,
-  stylish: fStylish,
-  json: JSON.stringify,
-};
+import stylish from './stylish.js';
+import plain from './plain.js';
 
 export default (file1, file2, format = 'stylish') => {
-  if (_.has(mapping, format)) {
-    return compareFiles(file1, file2, mapping[format]);
+  switch (format) {
+    case 'plain':
+      return compareFiles(file1, file2, plain);
+    case 'stylish':
+      return compareFiles(file1, file2, stylish);
+    case 'json':
+      return compareFiles(file1, file2, JSON.stringify);
+    default:
+      throw new Error(`Unknown format: '${format}'!`);
   }
-
-  throw new Error(`Unknown format: '${format}'!`);
 };
