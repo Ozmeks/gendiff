@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import compareFiles from '../compare-files.js';
-import stylish from './stylish.js';
-import plain from './plain.js';
+import fStylish from './stylish.js';
+import fPlain from './plain.js';
 
 const mapping = {
-  plain,
-  stylish,
+  plain: fPlain,
+  stylish: fStylish,
   json: JSON.stringify,
 };
 
