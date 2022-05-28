@@ -10,6 +10,7 @@ program
   .helpOption('-h, --help', 'output usage information')
   .arguments('<filepath1> <filepath2>')
   .action((filepath1, filepath2) => {
-    console.log(gendiff(filepath1, filepath2, program.format));
+    const { format } = program.opts();
+    console.log(gendiff(filepath1, filepath2, format));
   })
   .parse(process.argv);
