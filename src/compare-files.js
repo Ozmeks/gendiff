@@ -20,9 +20,7 @@ const compareFiles = (path1, path2, formatter) => {
   const obj2 = getObj(fileContent2, fileExt2);
 
   const mergedObj = buildTree(obj1, obj2);
-  const result = formatter(mergedObj);
-
-  return result;
+  return formatter(mergedObj);
 };
 
 export default compareFiles;
