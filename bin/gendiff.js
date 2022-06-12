@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander/esm.mjs';
-import gendiff from '../src/formatters/index.js';
+import getDifference from '../src/formatters/index.js';
 
 const program = new Command();
 program
@@ -11,6 +11,6 @@ program
   .arguments('<filepath1> <filepath2>')
   .action((filepath1, filepath2) => {
     const { format } = program.opts();
-    console.log(gendiff(filepath1, filepath2, format));
+    console.log(getDifference(filepath1, filepath2, format));
   })
   .parse(process.argv);

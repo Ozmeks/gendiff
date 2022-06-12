@@ -11,9 +11,7 @@ const stylish = (obj) => {
     const changeIndent = replacer.repeat(currentSpaceCnt - 2);
     const notChangedIndent = replacer.repeat(currentSpaceCnt);
     const closeBracketIndent = replacer.repeat(currentSpaceCnt - spacesCount);
-
-    const entries = Object
-      .entries(node)
+    const entries = Object.entries(node)
       .reduce((acc, [property, objValue]) => {
         const { change, value } = objValue;
         switch (change) {
@@ -33,11 +31,8 @@ const stylish = (obj) => {
             return [...acc, `${notChangedIndent}${property}: ${iter(objValue, depth + 1)}`];
         }
       }, []);
-
-    return ['{', ...entries, `${closeBracketIndent}}`]
-      .join('\n');
+    return ['{', ...entries, `${closeBracketIndent}}`].join('\n');
   };
-
   return iter(obj);
 };
 
