@@ -11,6 +11,7 @@ const stylish = (obj) => {
     const changeIndent = replacer.repeat(currentSpaceCnt - 2);
     const notChangedIndent = replacer.repeat(currentSpaceCnt);
     const closeBracketIndent = replacer.repeat(currentSpaceCnt - spacesCount);
+
     const entries = Object.entries(node)
       .reduce((acc, [property, objValue]) => {
         const { change, value } = objValue;
