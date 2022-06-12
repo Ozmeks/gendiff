@@ -7,23 +7,25 @@ const buildTree = (obj1, obj2) => {
     const value1 = obj1[key];
     const value2 = obj2[key];
 
+    const changedValue = {};
     if (hasObj1 && !hasObj2) {
-      return { ...acc, [key]: { value: value1, change: 'remove' } };
+      changedValue.value = value1;
+      changedValue.change = 'remove';
+    } else if (!hasObj1 && hasObj2) {
+      changedValue.value = value2;
+      changedValue.change = 'add';
+    } else if (_.isObject(value1) && _.isObject(value2)) {
+      changedValue.value = buildTree(value1, value2);
+      changedValue.change = 'none';
+    } else if (value1 !== value2) {
+      changedValue.value = [value1, value2];
+      changedValue.change = 'update';
+    } else {
+      changedValue.value = value1;
+      changedValue.change = 'none';
     }
 
-    if (!hasObj1 && hasObj2) {
-      return { ...acc, [key]: { value: value2, change: 'add' } };
-    }
-
-    if (_.isObject(value1) && _.isObject(value2)) {
-      return { ...acc, [key]: { value: buildTree(value1, value2), change: 'none' } };
-    }
-
-    if (value1 !== value2) {
-      return { ...acc, [key]: { value: [value1, value2], change: 'update' } };
-    }
-
-    return { ...acc, [key]: { value: value1, change: 'none' } };
+    return { ...acc, [key]: changedValue };
   };
 
   const keys = Object.keys({ ...obj1, ...obj2 });
