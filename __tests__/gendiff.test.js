@@ -15,7 +15,7 @@ const fileYaml2 = getFixturePath('file2.yml');
 
 const formats = ['plain', 'stylish', 'json'];
 
-test.each(formats)('Test %s format', (format) => {
+test.each(formats)('Check %s format', (format) => {
   const expectedResult = readFile(`expected_${format}.md`).toString();
   const receivedJson = gendiff(fileJson1, fileJson2, format);
   expect(receivedJson).toEqual(expectedResult);
